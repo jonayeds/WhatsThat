@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@mui/icons-material": "^5.16.5"
+    "@mui/icons-material": "^5.16.5",
+    "react-hook-form": "^7.52.1"
   }
 }

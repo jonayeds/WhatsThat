@@ -11,9 +11,33 @@ import {
 import { useState } from "react";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { VisuallyHiddenInput } from "../components/styles/StyledComponent";
+import { passwordValidator, usernameValidator } from "../utils/validators";
+import toast from 'react-hot-toast'
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const toggleLogin = () => setIsLogin(!isLogin);
+  const handleFormSubmit =e=>{
+    e.preventDefault()
+    if(!isLogin){
+      const  name = e.target.name.value
+    const  bio = e.target.bio.value
+    const  username = e.target.username.value 
+    const  password = e.target.password.value
+    const isValidPassword = passwordValidator(password)
+    const isValidUsername = usernameValidator(username)
+    if(!isValidPassword.errorMessage && !isValidUsername.errorMessage){
+      toast.success('all ok')
+    }else{
+      isValidPassword.errorMessage && toast.error(isValidPassword.errorMessage)
+      isValidUsername.errorMessage && toast.error(isValidUsername.errorMessage)
+    }
+    }else{
+      const  username = e.target.username.value 
+    const  password = e.target.password.value
+    console.log( username, password)
+
+    }
+  }
   return (
     <Container
       component={"main"}
@@ -38,7 +62,8 @@ const Login = () => {
         {!isLogin ? (
           <>
             <Typography variant="h5">Sign up</Typography>
-            <form
+            <form 
+              onSubmit={handleFormSubmit}
               style={{
                 width: "100%",
                 marginTop: "1rem",
@@ -77,6 +102,7 @@ const Login = () => {
                 label="your name"
                 margin="normal"
                 variant="outlined"
+                name="name"
               />
               <TextField
                 required
@@ -84,6 +110,7 @@ const Login = () => {
                 label="Bio"
                 margin="normal"
                 variant="outlined"
+                name="bio"
               />
               <TextField
                 required
@@ -91,6 +118,7 @@ const Login = () => {
                 label="username"
                 margin="normal"
                 variant="outlined"
+                name="username"
               />
               <TextField
                 required
@@ -99,6 +127,7 @@ const Login = () => {
                 margin="normal"
                 variant="outlined"
                 type="password"
+                name="password"
               />
               <Button
                 sx={{
@@ -123,6 +152,7 @@ const Login = () => {
           <>
             <Typography variant="h5">Login</Typography>
             <form
+              onSubmit={handleFormSubmit}
               style={{
                 width: "100%",
                 marginTop: "1rem",
@@ -134,6 +164,7 @@ const Login = () => {
                 label="username"
                 margin="normal"
                 variant="outlined"
+                name="username"
               />
               <TextField
                 required
@@ -142,6 +173,7 @@ const Login = () => {
                 margin="normal"
                 variant="outlined"
                 type="password"
+                name="password"
               />
               <Button
                 sx={{
