@@ -19,7 +19,7 @@ const Login = () => {
   const handleFormSubmit =e=>{
     e.preventDefault()
     if(!isLogin){
-      const  name = e.target.name.value
+      const  name = e.target.name.value  
     const  bio = e.target.bio.value
     const  username = e.target.username.value 
     const  password = e.target.password.value
