@@ -13,9 +13,12 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { VisuallyHiddenInput } from "../components/styles/StyledComponent";
 import { passwordValidator, usernameValidator } from "../utils/validators";
 import toast from 'react-hot-toast'
+import { useFileHandler } from '6pp'
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const toggleLogin = () => setIsLogin(!isLogin);
+  const avatar = useFileHandler("single", 10)
+  console.log(avatar.error)
   const handleFormSubmit =e=>{
     e.preventDefault()
     if(!isLogin){
@@ -30,6 +33,7 @@ const Login = () => {
     }else{
       isValidPassword.errorMessage && toast.error(isValidPassword.errorMessage)
       isValidUsername.errorMessage && toast.error(isValidUsername.errorMessage)
+      avatar.error && toast.error(avatar.error)
     }
     }else{
       const  username = e.target.username.value 
@@ -76,6 +80,7 @@ const Login = () => {
                     height: "10rem",
                     objectFit: "cover",
                   }}
+                  src={avatar.preview}
                 />
                 <IconButton
                 sx={{
@@ -92,7 +97,7 @@ const Login = () => {
                 >
                   <>
                   <CameraAltIcon/>
-                  <VisuallyHiddenInput type="file" />
+                  <VisuallyHiddenInput type="file" onChange={avatar.changeHandler} />
                   </>
                 </IconButton>
               </Stack>
