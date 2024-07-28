@@ -1,10 +1,19 @@
+/* eslint-disable react/display-name */
 
-const AppLayout = () => {
+import Title from "../shared/Title";
+import Header from "./Header";
+
+const AppLayout = () => (WrappedComponent) => {
+  return (props) => {
     return (
-        <div>
-            
-        </div>
+      <>
+      <Title />
+        <Header />
+        <WrappedComponent {...props} />
+        <div>Footer</div>
+      </>
     );
+  };
 };
 
 export default AppLayout;
