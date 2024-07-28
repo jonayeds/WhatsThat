@@ -14,15 +14,25 @@ import { VisuallyHiddenInput } from "../components/styles/StyledComponent";
 import { passwordValidator, usernameValidator } from "../utils/validators";
 import toast from 'react-hot-toast'
 import { useFileHandler } from '6pp'
+
+
+
+import { createTheme } from '@mui/material/styles';
+
+import { red } from '@mui/material/colors';
+
+
+
+
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const toggleLogin = () => setIsLogin(!isLogin);
   const avatar = useFileHandler("single", 10)
-  console.log(avatar.error)
-  const handleFormSubmit =e=>{
+
+  // SignUp
+  const handleSignUp =e=>{
     e.preventDefault()
-    if(!isLogin){
-      const  name = e.target.name.value  
+    const  name = e.target.name.value  
     const  bio = e.target.bio.value
     const  username = e.target.username.value 
     const  password = e.target.password.value
@@ -35,15 +45,24 @@ const Login = () => {
       isValidUsername.errorMessage && toast.error(isValidUsername.errorMessage)
       avatar.error && toast.error(avatar.error)
     }
-    }else{
-      const  username = e.target.username.value 
+  }
+
+
+  // Login
+  const handleLogin = e=>{
+    e.preventDefault()
+    const  username = e.target.username.value 
     const  password = e.target.password.value
     console.log( username, password)
-
-    }
   }
+ 
   return (
-    <Container
+   <div
+   style={{
+    backgroundImage: "linear-gradient(#FEF3E2, #BEC6A0)"
+   }}
+   >
+       <Container
       component={"main"}
       maxWidth="xs"
       sx={{
@@ -61,13 +80,15 @@ const Login = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          backgroundColor: "#d1d7bb",
+          color:"white"
         }}
       >
         {!isLogin ? (
           <>
             <Typography variant="h5">Sign up</Typography>
             <form 
-              onSubmit={handleFormSubmit}
+              onSubmit={handleSignUp}
               style={{
                 width: "100%",
                 marginTop: "1rem",
@@ -79,6 +100,8 @@ const Login = () => {
                     width: "10rem",
                     height: "10rem",
                     objectFit: "cover",
+                    color:"#b9c19d",
+                    backgroundColor: "#eef1e2"
                   }}
                   src={avatar.preview}
                 />
@@ -108,6 +131,8 @@ const Login = () => {
                 margin="normal"
                 variant="outlined"
                 name="name"
+                color="success"
+                
               />
               <TextField
                 required
@@ -116,6 +141,7 @@ const Login = () => {
                 margin="normal"
                 variant="outlined"
                 name="bio"
+                color="success"
               />
               <TextField
                 required
@@ -124,6 +150,7 @@ const Login = () => {
                 margin="normal"
                 variant="outlined"
                 name="username"
+                color="success"
               />
               <TextField
                 required
@@ -133,6 +160,7 @@ const Login = () => {
                 variant="outlined"
                 type="password"
                 name="password"
+                color="success"
               />
               <Button
                 sx={{
@@ -157,7 +185,7 @@ const Login = () => {
           <>
             <Typography variant="h5">Login</Typography>
             <form
-              onSubmit={handleFormSubmit}
+              onSubmit={handleLogin}
               style={{
                 width: "100%",
                 marginTop: "1rem",
@@ -170,6 +198,7 @@ const Login = () => {
                 margin="normal"
                 variant="outlined"
                 name="username"
+                color="success"
               />
               <TextField
                 required
@@ -179,6 +208,7 @@ const Login = () => {
                 variant="outlined"
                 type="password"
                 name="password"
+                color="success"
               />
               <Button
                 sx={{
@@ -201,7 +231,8 @@ const Login = () => {
           </>
         )}
       </Paper>
-    </Container>
+    </Container>   
+   </div>
   );
 };
 
