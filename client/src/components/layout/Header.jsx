@@ -41,7 +41,7 @@ function Header() {
   };
   const handleLogout = () => {};
   const openNotification = () => {
-    setIsNotification(!isNotification);
+    setIsNotification(!isNotification);  
   };
   return (
     <>
