@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Backdrop,
   Box,
   IconButton,
   Toolbar,
@@ -111,13 +112,13 @@ function Header() {
           </Toolbar>
         </AppBar>
       </Box>
-      {isSearch && <Suspense fallback={<div>Loading...</div>}>
+      {isSearch && <Suspense fallback={<Backdrop open />}>
         <SearchDialogue />
         </Suspense>}
-      {isNotification && <Suspense fallback={<div>Loading...</div>}>
+      {isNotification && <Suspense fallback={<Backdrop open />}>
         <NotificationsDialogue />
         </Suspense>}
-      {isNewGroup && <Suspense fallback={<div>Loading...</div>}>
+      {isNewGroup && <Suspense fallback={<Backdrop open />}>
         <NewGroupDialogue />
         </Suspense>}
     </>
