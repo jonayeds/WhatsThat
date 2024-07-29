@@ -1,0 +1,1 @@
+export const green = "#eff1e2"

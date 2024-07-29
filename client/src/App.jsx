@@ -14,7 +14,7 @@ const App = () => {
         <Route  element={<ProtectedRoute user={user} />}>
         <Route path="/" element={<Home />}/>
         <Route path="/chat/:chatId" element={<Chat />}/>
-        <Route path="/groups" element={<Groups />}/>
+        <Route path="/group" element={<Groups />}/>
         </Route>
         <Route path="/login" element={<ProtectedRoute user={!user} redirect='/'>
           <Login />
