@@ -2,6 +2,7 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { Link } from "../styles/StyledComponent"
 import { memo } from "react"
+import AvatarCard from "./AvatarCard"
 
 
 const ChatItem = ({
@@ -19,7 +20,7 @@ const ChatItem = ({
   return (
     <Link to={`/chat/${_id}`}
     sx={{
-        padding: "0"
+        paddingLeft: "10px"
     }}
     onContextMenu={e=>handleDeleteChatOpen(e, _id, groupChat)}>
     <div style={{
@@ -31,11 +32,12 @@ const ChatItem = ({
         color: sameSender? "white": "unset",
         position: "relative"
     }}>
-        <Stack>
+        <AvatarCard avatar={avatar} />
+        <Stack>  
             <Typography>{name} </Typography>
                 {newMassage  && (<Typography>{newMassage.count}  New Message</Typography>) }
            
-        </Stack>
+        </Stack>  
         {
             isOnline && <Box sx={{
                 width: "10px",

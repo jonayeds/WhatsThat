@@ -13,6 +13,10 @@ const AppLayout = () => (WrappedComponent) => {
   return (props) => {
     const params = useParams()
     const chatId= params.chatId
+    const handleDeleteChat  =(e, _id, groupChat)=>{
+      e.preventDefault()
+      console.log("delete chat ", _id, groupChat)
+    }
     return (
       <>
         <Title />
@@ -27,13 +31,8 @@ const AppLayout = () => (WrappedComponent) => {
           }} 
           height={"100%"} 
           >
-            <ChatList chats={chats} chatId={chatId} newMassages={[
-              {
-                chatId,
-                count: 4
-              }
-            ]} 
-            onlineUsers={["1", "2"]} />
+            <ChatList chats={chats} chatId={chatId} 
+            onlineUsers={["1", "2"]} handleDeleteChat={handleDeleteChat} />
           </Grid>
           <Grid
             item xs={12}
