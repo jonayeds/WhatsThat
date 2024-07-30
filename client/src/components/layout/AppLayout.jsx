@@ -1,12 +1,18 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/display-name */
 
 import { Grid } from "@mui/material";
 import Title from "../shared/Title";
 import Header from "./Header";
 import ChatList from "../specific/ChatList";
+import { chats } from "../../constants/sampleData";
+import { useParams } from "react-router-dom";
 
 const AppLayout = () => (WrappedComponent) => {
+
   return (props) => {
+    const params = useParams()
+    const chatId= params.chatId
     return (
       <>
         <Title />
@@ -21,7 +27,13 @@ const AppLayout = () => (WrappedComponent) => {
           }} 
           height={"100%"} 
           >
-            <ChatList chats={[1,2,3,4,5]} />
+            <ChatList chats={chats} chatId={chatId} newMassages={[
+              {
+                chatId,
+                count: 4
+              }
+            ]} 
+            onlineUsers={["1", "2"]} />
           </Grid>
           <Grid
             item xs={12}

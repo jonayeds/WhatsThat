@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Box, Stack, Typography } from "@mui/material"
 import { Link } from "../styles/StyledComponent"
+import { memo } from "react"
 
 
 const ChatItem = ({
@@ -16,7 +17,11 @@ const ChatItem = ({
 
 }) => {
   return (
-    <Link to={`/chat/_${_id}`} >
+    <Link to={`/chat/${_id}`}
+    sx={{
+        padding: "0"
+    }}
+    onContextMenu={e=>handleDeleteChatOpen(e, _id, groupChat)}>
     <div style={{
         display:"flex",
         gap:"1rem",
@@ -48,4 +53,4 @@ const ChatItem = ({
   )
 }
 
-export default ChatItem
+export default memo(ChatItem)
