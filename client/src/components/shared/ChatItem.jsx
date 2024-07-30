@@ -19,17 +19,16 @@ const ChatItem = ({
 }) => {
   return (
     <Link to={`/chat/${_id}`}
-    sx={{
-        paddingLeft: "10px"
-    }}
+    
     onContextMenu={e=>handleDeleteChatOpen(e, _id, groupChat)}>
     <div style={{
         display:"flex",
         gap:"1rem",
+        width:"100%",
         alignItems:"center",
         padding: "1rem",
-        backgroundColor: sameSender? "black": "unset",
-        color: sameSender? "white": "unset",
+        backgroundColor: sameSender? "rgba(217, 219, 207, 0.8)": "unset",
+        color: sameSender? "#515641": "unset",
         position: "relative"
     }}>
         <AvatarCard avatar={avatar} />
