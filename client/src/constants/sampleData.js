@@ -32,3 +32,19 @@ export const sampleUsers = [{
     _id: "2",
 }
 ]
+export const sampleNotifications = [{
+    sender:{
+        avatar:"https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
+    name: "jhon",
+    },
+    _id: "1",
+    
+},
+{
+   sender:{
+    avatar:"https://variety.com/wp-content/uploads/2024/06/Doraemon-the-Movie-Nobitas-Earth-Symphony-3x2cr-res.jpg?w=1000" ,
+    name: "Ma Boi",
+   },
+    _id: "2",
+}
+]
