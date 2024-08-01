@@ -19,7 +19,7 @@ const NewGroup = () => {
   console.log(selectedMembers)
   const submitHandler =()=>{
 
-  }
+  }   
   const closeHandler =()=>{
     
   }
