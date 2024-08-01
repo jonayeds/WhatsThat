@@ -1,10 +1,27 @@
+import { useInputValidation } from "6pp"
 import { Button, Dialog, DialogTitle, Stack, TextField, Typography } from "@mui/material"
+import { useState } from "react"
 import { sampleUsers } from "../../constants/sampleData"
 import UserItem from "../shared/UserItem"
 
 const NewGroup = () => {
-  const selectMemberHandler =()=>{
 
+  const [members, setMembers] = useState(sampleUsers)
+  const [selectedMembers, setSelectedMembers] = useState([])
+  const groupName = useInputValidation("")
+  const selectMemberHandler =(_id)=>{
+    if(selectedMembers.includes(_id)){
+      setSelectedMembers(selectedMembers.filter(member=> member !== _id))
+    }else{
+      setSelectedMembers([...selectedMembers, _id])
+    }
+  }
+  console.log(selectedMembers)
+  const submitHandler =()=>{
+
+  }
+  const closeHandler =()=>{
+    
   }
   return (
     <Dialog open>
@@ -13,12 +30,12 @@ const NewGroup = () => {
         sm:"30rem"
       }}>
         <DialogTitle textAlign={"center"} variant="h4">New Group</DialogTitle>
-        <TextField />
-        <Typography>Members</Typography>
+        <TextField value={groupName.value} onChange={groupName.changeHandler} label="group name" color="success" />
+        <Typography variant="body1" padding={"1rem"}>Members</Typography>
        <Stack>
         {
-           sampleUsers.map(user=>(
-            <UserItem user={user} key={user._id} handler={selectMemberHandler}  />
+           members.map(user=>(
+            <UserItem user={user} key={user._id} handler={selectMemberHandler} isAdded={selectedMembers.includes(user._id)}  />
            ))
         }
        </Stack>
@@ -29,7 +46,7 @@ const NewGroup = () => {
           "&:hover":{
             bgcolor:"#676a51"
           }
-        }}>Create</Button>
+        }} onClick={submitHandler}>Create</Button>   
        </Stack>
       </Stack>
     </Dialog>
