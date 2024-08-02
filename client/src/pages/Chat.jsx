@@ -16,11 +16,15 @@ const Chat = () => {
         height:"10%",
       }} >
         <Stack direction={"row"} height={"100%"} alignItems={"center"} position={"relative"}> 
-          <IconButton>
+          <IconButton sx={{
+            position: "absolute",
+            left:"0.5rem",
+            rotate: "30deg"
+          }}>
             <AttachFileIcon />
           </IconButton>
           <InputBox placeholder="Type message here..." />
-          <IconButton type="submit" sx={{
+          <IconButton  type="submit" sx={{
             color:"#878b73",
           }} >
             <SendIcon/>
