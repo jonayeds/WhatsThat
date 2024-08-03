@@ -1,15 +1,30 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import { KeyboardBackspace as KeyboardBackspaceIcon } from "@mui/icons-material"
-import { Box, Drawer, Grid, IconButton, Stack, Tooltip, Typography, Zoom } from "@mui/material"
-import {useNavigate} from "react-router-dom"
+import { Box, Drawer, Grid, IconButton, Stack, TextField, Tooltip, Typography, Zoom } from "@mui/material"
+import {useNavigate, useSearchParams} from "react-router-dom"
 import MenuIcon from '@mui/icons-material/Menu';
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import {Link} from "../components/styles/StyledComponent"
 import AvatarCard from "../components/shared/AvatarCard";
 import {chats} from "../constants/sampleData"
+import CreateIcon from '@mui/icons-material/Create';
+import DoneIcon from '@mui/icons-material/Done';
+
 const Groups = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isEdit, setIsEdit] = useState(false)
+  const chatId = useSearchParams()[0].get("group")
+  const [groupName, setGroupName] = useState(``)
+  // const [updatedGroupName, setUpdatedGroupName] = useState("")
+  useEffect(()=>{
+    setGroupName(`Group Name ${chatId}`)
+    // setUpdatedGroupName(`Group Name ${chatId}`)
+    return ()=>{
+      setGroupName("")
+      setIsEdit(false)
+    }
+  },[chatId])
   const navigate = useNavigate()
   const navigateBack = ()=>{
     navigate('/')
@@ -17,8 +32,26 @@ const Groups = () => {
   const handleMobile =()=>{
     setIsMobileMenuOpen(prev=> !prev)
   }
+  
 
-
+console.log(chatId)
+  const groupNameElement = <Stack direction={"row"} justifyContent={"center"} paddingTop={"4rem"} spacing={"0.5rem"}  >
+    
+    {
+      isEdit? <>
+        <TextField
+        defaultValue={groupName}
+        onChange={(e)=>setGroupName(e.target.value)}
+         variant="standard" />
+        <IconButton onClick={()=>setIsEdit(false)}>
+          <DoneIcon/>
+        </IconButton>
+      </>: <>
+      <Typography variant="h4">{groupName}</Typography>
+      <IconButton onClick={()=>setIsEdit(true)}><CreateIcon/></IconButton>
+      </>
+    }
+  </Stack>
 
   const IconBtn = <>
   <Box sx={{
@@ -37,8 +70,8 @@ const Groups = () => {
   <Tooltip title={"Back"} TransitionComponent={Zoom}>
     <IconButton onClick={navigateBack} sx={{
       position:"absolute",
-      left:"2rem",
-      top:"2rem",
+      left:"1rem",
+      top:"1rem",
       color: "white",
       bgcolor:"#778c74",
       ":hover":{
@@ -48,6 +81,7 @@ const Groups = () => {
       <KeyboardBackspaceIcon fontSize="medium" />
     </IconButton>
   </Tooltip>
+
   </>
   return (
     <Grid container height={"100vh"}>
@@ -57,7 +91,7 @@ const Groups = () => {
           sm:"block"
         }
       }}>
-        <GroupsList myGroups={chats} />
+        <GroupsList myGroups={chats} chatId={chatId} />
       </Grid>
       <Grid item xs={12} sm={8} sx={{
         display: "flex",
@@ -69,25 +103,27 @@ const Groups = () => {
         {
           IconBtn
         }
+        {
+          groupNameElement
+        }
       </Grid>
-      <Drawer sx={{
+      <Drawer sx={{  
        display:{
          xs:"block",
          sm:"none"
        }
       }} open={isMobileMenuOpen} onClose={()=>setIsMobileMenuOpen(false)} >
-        <GroupsList myGroups={chats}/>
+        <GroupsList w="50vw" myGroups={chats} chatId={chatId}/>
       </Drawer>
     </Grid>
   )
 }
 
 const GroupsList =({w="100%" , myGroups =[], chatId})=>{
-  console.log(myGroups)
  return(
-  <Stack bgcolor={""} height={"100%"}>
+  <Stack width={w} bgcolor={""} height={"100%"}>
   {
-    myGroups.length >0? myGroups.map(group=><GroupListItem key={group._id} group={group} chatId={chatId} />) : <Typography textAlign={"center"} padding={"1rem"} color={"#778c74"}>No Groups</Typography>
+    myGroups.length >0? myGroups.map(group=><GroupListItem  key={group._id} group={group} chatId={chatId} />) : <Typography textAlign={"center"} padding={"1rem"} color={"#778c74"}>No Groups</Typography>
   }
 </Stack>
  )
@@ -95,10 +131,13 @@ const GroupsList =({w="100%" , myGroups =[], chatId})=>{
 
 const GroupListItem = memo(({group, chatId})=>{
   const {name, avatar, _id} = group
-  console.log("hit")
   return (
-    <Link to={`?group=${_id}`}>
-      <Stack bgcolor={""} direction={"row"} alignItems={"center"} spacing={""}>
+    <Link to={`?group=${_id}`} onClick={e=>{
+      if(chatId === _id) e.preventDefault() 
+    }} style={{
+      padding:"0.8rem"
+  }}>
+      <Stack  bgcolor={""} direction={"row"} alignItems={"center"} spacing={""}>
         <AvatarCard avatar={avatar} />
         <Typography >{name}</Typography>
       </Stack>
