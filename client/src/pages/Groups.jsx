@@ -32,7 +32,9 @@ const Groups = () => {
   const handleMobile =()=>{
     setIsMobileMenuOpen(prev=> !prev)
   }
-  
+    
+
+
 
 console.log(chatId)
   const groupNameElement = <Stack direction={"row"} justifyContent={"center"} paddingTop={"4rem"} spacing={"0.5rem"}  >
