@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Avatar, AvatarGroup, Box, Stack } from "@mui/material"
+import { transformImage } from "../../lib/features"
 
 const AvatarCard = ({avatar=[] , max=4}) => {
 
@@ -11,7 +12,7 @@ const AvatarCard = ({avatar=[] , max=4}) => {
                 avatar.map((i, index)=>(
                     <Avatar
                         key={index} 
-                        src={i}
+                        src={transformImage(i)}
                         alt={`Avatar ${index}`}
                         sx={{
                             width:"3rem",
