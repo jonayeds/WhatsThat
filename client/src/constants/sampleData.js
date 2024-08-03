@@ -48,3 +48,33 @@ export const sampleNotifications = [{
     _id: "2",
 }
 ]
+
+export const  sampleMassage = [{
+    attachments:[
+    ],
+    content:"L ka msg hai",
+    _id: "safhfhaihfsuf",
+    sender:{
+        _id:"user._id",
+        name: "chaman",
+    },
+    chat:"chatId",
+    createdAt: "2024-02-12T10:24:30.6102"
+},
+{
+    attachments:[
+        {
+            public_id:"udhsfs",
+            url: "https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"
+        }
+    ],
+    // content:"L ka msg hai 2",
+    _id: "safhfhaihsfdasfsuf",
+    sender:{
+        _id:"1",
+        name: "chaman 2",
+    },
+    chat:"chatId",
+    createdAt: "2024-02-12T10:24:30.6102"
+}
+] 
