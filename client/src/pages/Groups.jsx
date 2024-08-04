@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
-import { KeyboardBackspace as KeyboardBackspaceIcon } from "@mui/icons-material"
-import { Box, Drawer, Grid, IconButton, Stack, TextField, Tooltip, Typography, Zoom } from "@mui/material"
+import { Add as AddIcon, Delete as DeleteIcon, KeyboardBackspace as KeyboardBackspaceIcon } from "@mui/icons-material"
+import { Box, Button, Drawer, Grid, IconButton, Stack, TextField, Tooltip, Typography, Zoom } from "@mui/material"
 import {useNavigate, useSearchParams} from "react-router-dom"
 import MenuIcon from '@mui/icons-material/Menu';
 import { memo, useEffect, useState } from "react";
@@ -85,6 +85,22 @@ console.log(chatId)
   </Tooltip>
 
   </>
+  const BtnGroup  = <Stack 
+    direction={{
+      xs: "column-reverse",
+      sm:"row"
+    }}
+    spacing={"1rem"}
+    p={{
+      xs:"0",
+      sm:"1rem",
+      md:"1rem 4rem"
+    }}
+  >
+    <Button size="large" variant="text" color="error" startIcon={<DeleteIcon/>}>Delete Group</Button>
+    <Button size="large" variant="contained" color="success" startIcon={<AddIcon/>}>Add Member</Button>
+  </Stack>
+  
   return (
     <Grid container height={"100vh"}>
       <Grid item  sm={4} sx={{
@@ -106,7 +122,35 @@ console.log(chatId)
           IconBtn
         }
         {
-          groupNameElement
+          groupName && (
+            <>
+              {groupNameElement}
+              <Typography 
+                margin={"2rem"}
+                alignSelf={"flex-start"}
+                variant="body1"
+              >
+                Members
+              </Typography>
+              <Stack
+                maxWidth={"45rem"}
+                width={"100%"}
+                boxSizing={"border-box"}
+                padding={{
+                  sm:"1rem",
+                  xs:"0",
+                  md:"1rem 4rem",
+                }}
+                spacing={"2rem"}
+                bgcolor={"gray"}
+                height={"50vh"}
+                overflow={"auto"}
+              ></Stack>
+              {
+                BtnGroup
+              }
+            </>
+          )
         }
       </Grid>
       <Drawer sx={{  
