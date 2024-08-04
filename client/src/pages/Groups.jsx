@@ -1,21 +1,25 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import { Add as AddIcon, Delete as DeleteIcon, KeyboardBackspace as KeyboardBackspaceIcon } from "@mui/icons-material"
-import { Box, Button, Drawer, Grid, IconButton, Stack, TextField, Tooltip, Typography, Zoom } from "@mui/material"
+import { Backdrop, Box, Button, Drawer, Grid, IconButton, Stack, TextField, Tooltip, Typography, Zoom } from "@mui/material"
 import {useNavigate, useSearchParams} from "react-router-dom"
 import MenuIcon from '@mui/icons-material/Menu';
-import { memo, useEffect, useState } from "react";
+import { memo, Suspense, useEffect, useState } from "react";
 import {Link} from "../components/styles/StyledComponent"
 import AvatarCard from "../components/shared/AvatarCard";
 import {chats} from "../constants/sampleData"
 import CreateIcon from '@mui/icons-material/Create';
 import DoneIcon from '@mui/icons-material/Done';
+import { ConfirmDeleteDialog } from "../components/dialogs/ConfirmDeleteDialog";
+// const ConfirmDeleteDialog = lazy(()=>import("../components/dialogs/ConfirmDeleteDialog"))
+
 
 const Groups = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
   const chatId = useSearchParams()[0].get("group")
   const [groupName, setGroupName] = useState(``)
+  const [confirmDeleteDialog, setConfirmDeleteDialog] = useState(false)
   // const [updatedGroupName, setUpdatedGroupName] = useState("")
   useEffect(()=>{
     setGroupName(`Group Name ${chatId}`)
@@ -31,6 +35,15 @@ const Groups = () => {
   }
   const handleMobile =()=>{
     setIsMobileMenuOpen(prev=> !prev)
+  }
+  const confirmDeleteHandler= ()=>{
+    setConfirmDeleteDialog(true)
+  }
+  const closeConfirmDeleteHandler = ()=>{
+    setConfirmDeleteDialog(false)
+  }
+  const openAddMember =()=>{
+
   }
     
 
@@ -97,8 +110,14 @@ console.log(chatId)
       md:"1rem 4rem"
     }}
   >
-    <Button size="large" variant="text" color="error" startIcon={<DeleteIcon/>}>Delete Group</Button>
-    <Button size="large" variant="contained" color="success" startIcon={<AddIcon/>}>Add Member</Button>
+    <Button onClick={confirmDeleteHandler} size="large" variant="text" color="error" startIcon={<DeleteIcon/>}>Delete Group</Button>
+    <Button size="large" variant="contained" sx={{
+      bgcolor:"#9ab896",
+      ":hover": {
+        bgcolor:"#6b8668"
+      }
+    }} 
+    onClick={openAddMember} startIcon={<AddIcon/>}>Add Member</Button>
   </Stack>
   
   return (
@@ -142,7 +161,7 @@ console.log(chatId)
                   md:"1rem 4rem",
                 }}
                 spacing={"2rem"}
-                bgcolor={"gray"}
+                bgcolor={"#EFF1E2"}
                 height={"50vh"}
                 overflow={"auto"}
               ></Stack>
@@ -153,6 +172,11 @@ console.log(chatId)
           )
         }
       </Grid>
+      {
+        confirmDeleteDialog && <Suspense fallback={<Backdrop open/>}>
+          <ConfirmDeleteDialog open={true} handleClose={closeConfirmDeleteHandler} />
+        </Suspense>
+      }
       <Drawer sx={{  
        display:{
          xs:"block",
