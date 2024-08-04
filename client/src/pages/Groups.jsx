@@ -45,7 +45,10 @@ const Groups = () => {
   const openAddMember =()=>{
 
   }
-    
+
+  const deleteHandler = ()=>{
+
+  }
 
 
 
@@ -174,7 +177,7 @@ console.log(chatId)
       </Grid>
       {
         confirmDeleteDialog && <Suspense fallback={<Backdrop open/>}>
-          <ConfirmDeleteDialog open={true} handleClose={closeConfirmDeleteHandler} />
+          <ConfirmDeleteDialog open={true} handleClose={closeConfirmDeleteHandler} deleteHandler={deleteHandler} />
         </Suspense>
       }
       <Drawer sx={{  
