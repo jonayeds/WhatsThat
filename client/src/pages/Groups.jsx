@@ -11,9 +11,10 @@ import {chats} from "../constants/sampleData"
 import CreateIcon from '@mui/icons-material/Create';
 import DoneIcon from '@mui/icons-material/Done';
 import { ConfirmDeleteDialog } from "../components/dialogs/ConfirmDeleteDialog";
+import AddMemberDialog from "../components/dialogs/AddMemberDialog";
 // const ConfirmDeleteDialog = lazy(()=>import("../components/dialogs/ConfirmDeleteDialog"))
 
-
+const isAddMember = false
 const Groups = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
@@ -175,6 +176,11 @@ console.log(chatId)
           )
         }
       </Grid>
+      {
+        isAddMember && <Suspense fallback={<Backdrop open/>}>
+          <AddMemberDialog/>
+        </Suspense>
+      }
       {
         confirmDeleteDialog && <Suspense fallback={<Backdrop open/>}>
           <ConfirmDeleteDialog open={true} handleClose={closeConfirmDeleteHandler} deleteHandler={deleteHandler} />

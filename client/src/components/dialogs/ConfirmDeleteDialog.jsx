@@ -14,7 +14,9 @@ export const ConfirmDeleteDialog = ({open, handleClose, deleteHandler}) => {
             Are you sure to delete the group?
             </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{
+          justifyContent:"center",
+        }}>
             <Button onClick={handleClose}>No</Button>
             <Button color="error" variant="outlined" onClick={deleteHandler}>Yes</Button>
         </DialogActions>
