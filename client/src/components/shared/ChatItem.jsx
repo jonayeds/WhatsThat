@@ -23,7 +23,6 @@ const ChatItem = ({
     onContextMenu={e=>handleDeleteChatOpen(e, _id, groupChat)}>
     <div style={{
         display:"flex",
-        gap:"1rem",
         width:"100%",
         alignItems:"center",
         padding: "1rem",
