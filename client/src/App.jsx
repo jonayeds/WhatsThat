@@ -31,7 +31,7 @@ const App = () => {
         <Route path='/admin/group-management' element={<ChatManagement/>} />
         <Route path='/admin/massages' element={<MessageManagement/>} />
         <Route path='/admin/user-management' element={<UserManagement/>} />
-        <Route path='*' element={<NotFound />}/>
+        <Route path='*' element={<NotFound />}/> 
       </Routes>
       </Suspense>
     </BrowserRouter>
