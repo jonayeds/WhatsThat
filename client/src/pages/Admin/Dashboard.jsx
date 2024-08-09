@@ -34,8 +34,8 @@ const Dashboard = () => {
             {
               moment().format("dddd, MMMM do, yyyy")
             }
-          </Typography>
           <NotificationsIcon/>
+          </Typography>
         </Stack>
       </Paper>
     </>

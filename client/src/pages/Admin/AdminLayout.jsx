@@ -25,7 +25,7 @@ import { Dashboard as DashboardIcon } from "@mui/icons-material";
 const Link = styled(LinkComponent)`
   text-decoration: none;
   border-radius: 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   color: black;
   &:hover {
     color: #7c8456;
@@ -64,8 +64,8 @@ const SideBar = ({ w = "100%" }) => {
       bgcolor={"#F0F1EA"}
       height={"100%"}
       direction={"column"}
-      padding={"3rem"}
-      spacing={"3rem"}
+      padding={"1rem"}
+      spacing={"2rem"}
       width={w}
     >
       <Typography textTransform={"uppercase"} variant="h4" textAlign={"center"}>
