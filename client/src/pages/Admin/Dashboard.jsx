@@ -79,16 +79,16 @@ const Dashboard = () => {
           borderRadius:'1rem',
           display:"flex",
           justifyContent:"center",
+          alignItems:"center",
           width:{
             xs:"100%",
             sm:"50%",
           },
           position:"relative",
           maxWidth:"25rem",
-          height:"25rem"
         }}
         >
-           <DoughnutChart/>
+           <DoughnutChart labels={["Single chat", "Group chat"]} values={[23,56]}/>
            <Stack position={"absolute"}
            direction={"row"}
            justifyContent={"center"}

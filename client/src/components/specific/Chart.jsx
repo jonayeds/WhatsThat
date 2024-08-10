@@ -46,9 +46,32 @@ const LineChart = ({values=[]}) => {
     <Line data={data} options={lineChartOptions} />
   )
 }
-
-const DoughnutChart = ()=>{
-    return <div>DChart</div>
+const doughnutChartOptions = {
+  responsive:true,
+  plugins:{
+    legend:{
+      display: false,
+    },
+    title:{
+      display:false
+    }
+  },
+  cutout:110
+}
+const DoughnutChart = ({values=[] , labels=[]})=>{
+  const data = {
+    labels,
+    datasets:[{
+      data:values,
+      label:"Total chats Vs Group chats",
+      backgroundColor:["#B6BC98", "#F0F1EA"],
+      borderColor: ["#8d936b", "#B6BC98"],
+      offset:30
+    }]
+  }
+    return <Doughnut style={{
+      zIndex:"10"
+    }} data={data} options={doughnutChartOptions} />
 }
 
 export {LineChart, DoughnutChart}
