@@ -58,7 +58,7 @@ const Dashboard = () => {
   return (
     <AdminLayout>
       <Container component={"main"}>{AppBar}</Container>
-      <Stack direction={"row"} spacing={"2rem"} flexWrap={"wrap"}>
+      <Stack justifyContent={"center"} direction={"row"} gap={"2rem"} flexWrap={"wrap"}>
         <Paper 
         elevation={3}
         sx={{
@@ -69,7 +69,7 @@ const Dashboard = () => {
         }}
         >
            <Typography margin={"2rem 0"} variant="h4">Last Messages</Typography>
-           <LineChart/>
+           <LineChart values={[254,312,54,1,21,456]} />
         </Paper>
         <Paper
         
