@@ -98,9 +98,13 @@ const Dashboard = () => {
            height={"100%"}
 
            >
-            <GroupIcon/>
+            <GroupIcon sx={{
+              color:"#dee0ce"
+            }}/>
             <Typography>Vs</Typography>
-            <PersonIcon/>
+            <PersonIcon sx={{
+              color:"#B6BC98"
+            }}/>
            </Stack>
         </Paper>
       </Stack>
