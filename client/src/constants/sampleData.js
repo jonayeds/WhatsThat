@@ -78,3 +78,26 @@ export const  sampleMassage = [{
     createdAt: "2024-02-12T10:24:30.6102"
 }
 ] 
+
+
+
+export const dashboardData = {
+    users:[
+        {
+            _id:"1",
+            avatar:"https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
+            name:"buta",
+            username:"butagorila",
+            friends:20,
+            groups:5,
+        },
+        {
+            _id:"2",
+            avatar:"https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
+            name:"nobi",
+            username:"nobi_nobi",
+            friends:10,
+            groups:3,
+        },
+    ]
+}
