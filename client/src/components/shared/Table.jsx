@@ -48,7 +48,7 @@ const TableComponent = () => {
       <TableHead sx={{
         bgcolor:"#B6BC98",
         color:"white"
-      }}>
+      }}>   
         <TableRow >
           <TableCell sx={{
             color:"white"
