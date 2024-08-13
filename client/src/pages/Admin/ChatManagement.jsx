@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { dashboardData } from "../../constants/sampleData"
 
 
+
 const columns = [
   {
     field:"id",
@@ -21,18 +22,23 @@ const columns = [
     width:200,
   },
   {
-    field:"username",
-    headerName:"username",
+    field:"totalMembers",
+    headerName:"Total Members",
     width:200,
   },
   {
-    field:"friends",
-    headerName:"Friends",
+    field:"members",
+    headerName:"Members",
     width:150,
   },
   {
-    field:"groups",
-    headerName:"Groups",
+    field:"totalMessages",
+    headerName:"Total Messages",
+    width:150
+  },
+  {
+    field:"creator",
+    headerName:"Created",
     width:150
   },
 ]
@@ -40,7 +46,7 @@ const columns = [
 const ChatManagement = () => {
   const [rows,setRows]= useState([])
   useEffect(()=>{
-    setRows(dashboardData.users)
+    setRows(dashboardData.chats)
   },[])
   return (
     <AdminLayout>

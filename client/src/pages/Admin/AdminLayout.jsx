@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import {
   Close as CloseIcon,
-  Groups as GroupsIcon,
+  // Groups as GroupsIcon,
   Logout as LogoutIcon,
   ManageAccounts as ManageAccountsIcon,
   Menu as MenuIcon,
-  Message as MessageIcon,
+  // Message as MessageIcon,
 } from "@mui/icons-material";
 import {
   Box,
@@ -43,16 +43,6 @@ const adminTabs = [
     name: "Users",
     path: "/admin/user-management",
     icon: <ManageAccountsIcon />,
-  },
-  {
-    name: "Chats",
-    path: "/admin/group-management",
-    icon: <GroupsIcon />,
-  },
-  {
-    name: "Massages",
-    path: "/admin/massages",
-    icon: <MessageIcon />,
   },
 ];
 const SideBar = ({ w = "100%" }) => {

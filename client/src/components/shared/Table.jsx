@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Avatar, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-
+import {  Avatar, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 
 
 const TableComponent = ({rows=[], columns} ) => {
@@ -44,9 +43,7 @@ const TableComponent = ({rows=[], columns} ) => {
                 }}
                 >
                   {
-                    cell[0] === "avatar"? <Avatar sx={{
-                      margin:"0 auto"
-                    }} src={cell[1]} />: cell[1]
+                    cell[0] === "avatar"? <Avatar src={cell[1]} />: cell[1]
                   }
               </TableCell>
               ))
