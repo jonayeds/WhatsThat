@@ -1,5 +1,21 @@
 import express from "express"
+import {connectDB} from "./utils/features.js"
+import dotenv from "dotenv"
+
+dotenv.config({
+    path:"./.env"
+})
+
+const port = process.env.PORT || 3000
+
+connectDB(process.env.MONGO_URI)
+
+
 const app = express()
+
+// middlewares
+app.use(express.json())
+
 
 
 // Routes imports
@@ -13,6 +29,6 @@ app.get("/", (req, res)=>{
     res.send("WhatsThat is running")
 })
 
-app.listen(3000, ()=>{
-    console.log("server is listening on port  3000")
+app.listen(port , ()=>{
+    console.log("server is listening on port ", port)
 })
