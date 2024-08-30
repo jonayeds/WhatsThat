@@ -1,26 +1,33 @@
 import { User } from "../models/user.model.js"
+import { sendToken } from "../utils/features.js"
 
 
 
 const register =  async(req, res)=>{
-    const {name, username, password} = req.body
-    const avatar = {
-        public_id: "546346sda",
-        url:"564564sda"
+    const {name, username, password,  bio} = req.body
+    console.log(name,  username, password, bio)
+    const avatar ={
+        url:"sfh",
+        public_id:"fdsasfa"
     }
-    // await User.create({
-    //     name:"buta",
-    //     username:"butagorila",
-    //     password:"123456",
-    //     avatar
-    // })
-    return res.status(201).json({ message: "User created successfully"})
+    const user = await User.create({
+        name,
+        bio,
+        username,
+        password,
+        avatar
+    })
+   sendToken(res,user, 201, "User created")
 }
 
 
 
-const login =  (req, res)=>{
-    res.send("hello")
+const login =  async(req, res)=>{
+    const {username, password} = req.body
+    const user = await User.findOne({username}).select("+password")
+
+    const isPasswordCorrect =await compare
+
 }
 
 

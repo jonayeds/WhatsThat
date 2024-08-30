@@ -1,4 +1,11 @@
 import mongoose from "mongoose"
+import jwt from "jsonwebtoken"
+const cookieOptions = {
+    maxAge:1000* 60*60*24*15,
+    sameSite:"none",
+    httpOnly:true,
+    secure:true
+}
 
 const connectDB = async(uri) =>{
     try {
@@ -9,4 +16,19 @@ const connectDB = async(uri) =>{
     }
 }
 
-export { connectDB }
+const sendToken = (res, user, code, message)=>{
+    const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
+
+    return res
+    .status(code)
+    .cookie("whatsThat-token",token, cookieOptions )
+    .json(
+    {
+        success:true,
+        message,
+        user
+    })
+}
+
+
+export { connectDB, sendToken }
