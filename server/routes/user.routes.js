@@ -7,4 +7,6 @@ const router = Router()
 router.post("/register", singleAvatar, register )
 router.post("/login", login )
 
+
+
 export default router
