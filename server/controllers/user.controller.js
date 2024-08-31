@@ -38,8 +38,11 @@ const login = asyncHandler(async(req, res, next)=>{
 
 }) 
 
-const getProfileById = async(req, res)=>{
+const getProfile = asyncHandler(async(req, res)=>{
+    return res.status(200).json({
+        success:true,
+        data:req.user
+    })
+})
 
-}
-
-export {login, register}
+export {login, register,getProfile}
