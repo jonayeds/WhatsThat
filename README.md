@@ -1,2 +1,2 @@
-Chat Application -- Development ongoing 
+Chat Application -- (Development ongoing)
 
