@@ -52,4 +52,16 @@ const logout = asyncHandler(async(req, res)=>{
     })
 })
 
-export {login, register,getProfile, logout}
+const searchUser = asyncHandler(async(req, res)=>{
+    const {name} = req.query
+
+
+    return res.status(200).json({
+        success:true,
+        message:name
+    })
+})
+
+
+
+export {login, register,getProfile, logout, searchUser}

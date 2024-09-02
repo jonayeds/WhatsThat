@@ -20,11 +20,15 @@ app.use(cookieParser())
 
 // Routes imports
 import userRouter from "./routes/user.routes.js"
+import chatRouter from  "./routes/chat.routes.js"
 import { apiError } from "./middlewares/apiError.js"
 
 
 // Routs declaration
 app.use("/user", userRouter)
+app.use("/chat", chatRouter)
+
+
 
 app.get("/", (req, res)=>{
     res.send("WhatsThat is running")
